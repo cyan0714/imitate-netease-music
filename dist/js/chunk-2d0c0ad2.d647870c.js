@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0c0ad2"],{4396:function(e,n,t){"use strict";t.r(n);var a=function(){var e=this,n=e.$createElement;e._self._c;return e._m(0)},l=[function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",{attrs:{id:"cloudvillage"}},[t("h2",[e._v("云村")])])}],c={name:"CloudVillage"},r=c,u=t("5d22"),i=Object(u["a"])(r,a,l,!1,null,"30a7bd83",null);n["default"]=i.exports}}]);
+//# sourceMappingURL=chunk-2d0c0ad2.d647870c.js.map
