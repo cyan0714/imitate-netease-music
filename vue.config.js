@@ -1,6 +1,6 @@
 module.exports = {
+  publicPath: "./",
   configureWebpack: {
-    
     resolve: {
       // extensions:[]
       alias: {
@@ -8,11 +8,11 @@ module.exports = {
         common: "@/common",
         components: "@/components",
         network: "@/network",
-        views: "@/views"
-      }
+        views: "@/views",
+      },
     },
     devServer: {
-      disableHostCheck: true
-    }
-  }
+      disableHostCheck: true,
+    },
+  },
 };
