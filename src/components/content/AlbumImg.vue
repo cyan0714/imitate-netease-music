@@ -1,6 +1,13 @@
 <template>
   <div class="album-img">
-    <img :src="$store.state.albumImg" alt="" :class="{ rotate: $store.state.isPlaying }" />
+    <img
+      :src="$store.state.albumImg"
+      alt=""
+      :class="[
+        { animation_paused: !$store.state.isPlaying },
+        { animation_running: $store.state.isPlaying },
+      ]"
+    />
   </div>
 </template>
 
@@ -21,11 +28,13 @@ export default {
 img {
   width: 75%;
   border-radius: 50%;
-}
-.rotate {
-  /*animation (动画) :绑定选择器, 3s完成动画 linear(匀速) infinite(循环) */
   animation: loading 14s linear infinite forwards;
-  /*通过 @keyframes 规则,能够创建动画 , que 定义动画的名称 可自己定义*/
+}
+.animation_paused {
+  animation-play-state: paused;
+}
+.animation_running {
+  animation-play-state: running;
 }
 @keyframes loading {
   /*以百分比来规定改变发生的时间 也可以通过"from"和"to",等价于0% 和 100%*/

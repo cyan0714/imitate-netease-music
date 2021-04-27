@@ -14,7 +14,14 @@ const store = new Vuex.Store({
     songdetail: {},
     musicUrl: "",
     isShowState: false,
-    lyric: "",
+    lyric: [],
+    isShowProgress: false,
+    //是否显示播放器
+    isShowPlayer: false,
+    mp3CurrentTime: "",
+    mp3Duraction: "",
+    audioRes: "",
+    isShowTabBar: true,
   },
   mutations: {
     addToNetSongs(state, songsList) {
@@ -48,7 +55,26 @@ const store = new Vuex.Store({
     getSongLyric(state, lyric) {
       state.lyric = lyric;
     },
-    
+    isShowProgress(state) {
+      state.isShowProgress = !state.isShowProgress;
+      state.isShowState = !state.isShowState;
+    },
+    // 是否显示播放器
+    ShowPlayer(state) {
+      state.isShowPlayer = !state.isShowPlayer;
+    },
+    // 当歌曲加载时获取歌曲当前时间和总时间
+    loadedmetadata(state, time) {
+      state.mp3CurrentTime = time[0];
+      state.mp3Duraction = time[1];
+    },
+    //获取 audio 元素
+    getAudioRes(state, res) {
+      state.audioRes = res;
+    },
+    isShowTabBar(state) {
+      state.isShowTabBar = !state.isShowTabBar;
+    },
   },
 });
 export default store;

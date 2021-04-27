@@ -18,7 +18,7 @@ export default {
   name: "HelloWorld",
   data() {
     return {
-      songsName: "heal the world",
+      songsName: "慢半拍",
       resultSongs: [],
       isShow: true,
     };

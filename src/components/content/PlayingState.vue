@@ -12,17 +12,9 @@
       >{{ $store.state.songdetail.songName }} - {{ $store.state.songdetail.artistsName }}</span
     >
     <!-- 播放暂停按钮 -->
-    <div class="myaudio" @click="clktoplay">
-      <span class="pausebtn" v-if="!isShow"></span>
-      <span class="playbtn" v-if="isShow"></span>
-      <audio
-        :src="$store.state.musicUrl"
-        loop
-        autoplay="autoplay"
-        @play="play1"
-        @pause="pause1"
-        class="selfaudio"
-      ></audio>
+    <div class="togglestate" @click="clktoplay">
+      <span class="pausebtn" v-show="!$store.state.isPlaying"></span>
+      <span class="playbtn" v-show="$store.state.isPlaying"></span>
     </div>
   </div>
 </template>
@@ -33,36 +25,28 @@ export default {
   components: { AlbumImg },
   name: "PlayingState",
   data() {
-    return {
-      isShow: false,
-    };
+    return {};
   },
   props: {
-    sonMusicUrl: {
-      type: String,
-      default() {
-        return "";
-      },
-    },
+    // sonMusicUrl: {
+    //   type: String,
+    //   default() {
+    //     return "";
+    //   },
+    // },
   },
   methods: {
-    play1() {
-      this.$store.commit("playingTrue");
-    },
-    pause1() {
-      this.$store.commit("playingFalse");
-    },
     clktoplay() {
       // 获取 audio 元素，才能使用 pause 和 play 方法
-      let audio = document.querySelector("audio");
-      // 暂停和播放按钮是否显示
-      this.isShow = !this.isShow;
+      // let audio = document.querySelector("audio");
+      let rs = this.$store.state.audioRes;
       if (this.$store.state.isPlaying) {
-        audio.pause();
+        rs.pause();
       } else {
-        audio.play();
+        rs.play();
       }
     },
+
     showDiscPage() {
       this.$router.push("/discpage");
     },
@@ -86,16 +70,12 @@ export default {
   height: 50px;
   width: 100vw;
   position: fixed;
-  bottom: 89px;
+  bottom: 0px;
   left: 0;
-  /* border: 2px solid red; */
   box-shadow: 0 2px 7px 3px rgba(0, 0, 0, 0.1);
   line-height: 49px;
   background-color: #fff;
-  /* display: none; */
-}
-.selfaudio {
-  /* margin-left: 10px; */
+  z-index: 2;
 }
 .rotatedisc {
   width: 16vw;
@@ -125,14 +105,13 @@ export default {
   font-family: "icomoon";
   font-size: 24px;
 }
-.myaudio {
+.togglestate {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 10%;
   width: 24px;
   height: 24px;
-  /* box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.4); */
 }
 .pausebtn,
 .playbtn {

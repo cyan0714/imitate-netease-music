@@ -9,6 +9,11 @@
       </div>
       <a href="javascript:;" class="mv" v-if="item.mvid != ''" @click="mvIconClick(index)"></a>
     </li>
+    <playing-state
+      id="playingstate"
+      v-show="$store.state.isShowState"
+      ref="playingstate"
+    ></playing-state>
   </div>
 </template>
 
@@ -22,9 +27,12 @@ import {
   getLyric,
   songDetail,
 } from "@/network/interface";
+import PlayingState from "@/components/content/PlayingState";
 
 export default {
-  components: {},
+  components: {
+    PlayingState,
+  },
   name: "SongList",
   data() {
     return {
@@ -34,7 +42,7 @@ export default {
       mvUrl: "",
       isShowMv: false,
       // crtSongsMsg: [],
-      isShowstate: false,
+      isShowstate: true,
       lyric: "",
       songdetail: {},
     };
@@ -52,11 +60,10 @@ export default {
         // 把歌曲相关信息(专辑名，专辑 id，作者，歌曲名，歌曲 id，mvid，mv播放时间)传给 Vuex
         this.$store.commit("getSongDetail", this.songdetail);
         // 是否展示播放栏
-        this.isShowstate = true;
         this.$store.commit("isShowState", this.isShowstate);
       });
 
-      // 2.获取音乐播放 Url
+      // 2.获取音乐 mp3 Url
       getSongMp3(storeSongsListId).then((res) => {
         // console.log(res.data[0].url);
         this.musicUrl = res.data[0].url;
@@ -82,9 +89,13 @@ export default {
 
       // 5.获取歌词
       getLyric(storeSongsListId).then((res) => {
-        console.log(res.lrc);
-        this.lyric = res.lrc;
-        this.$store.commit("getSongLyric", this.lyric);
+        console.log(res.lrc.lyric);
+        this.lyric = res.lrc.lyric;
+        //格式化歌词
+        let lyric = this.lyric;
+        const regNewLine = /\n/;
+        const lineArr = lyric.split(regNewLine);
+        this.$store.commit("getSongLyric", lineArr);
         // console.log(res.klylrc);
       });
     },
@@ -96,7 +107,6 @@ export default {
         this.isShowMv = !false;
         this.$store.commit("addToMv", [this.mvUrl, this.isShowMv]);
       });
-
       this.$router.push("/mv");
     },
   },
@@ -114,9 +124,6 @@ export default {
   font-weight: normal;
   font-style: normal;
   font-display: block;
-}
-.play {
-  position: relative;
 }
 .mv {
   font-family: "icomoon";
@@ -149,9 +156,6 @@ li {
 span {
   margin-left: 5px;
   vertical-align: middle;
-}
-audio {
-  width: 100%;
 }
 .aboutsong {
   font-size: 10px;
