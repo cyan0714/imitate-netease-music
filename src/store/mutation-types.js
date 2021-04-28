@@ -1,0 +1,15 @@
+export const ADD_TO_NET_SONGS = "addToNetSongs";
+export const ADD_TO_ALBUM_IMG = "addToAlbumImg";
+export const ADD_TO_COMMENT = "addToComment";
+export const PLAYING_TRUE = "playingTrue";
+export const PLAYING_FALSE = "playingFalse";
+export const ADD_TO_MV = "addToMv";
+export const GET_SONG_DETAIL = "getSongDetail";
+export const GET_MUSIC_URL = "getMusicUrl";
+export const IS_SHOW_STATE = "isShowState";
+export const GET_SONG_LYRIC = "getSongLyric";
+export const IS_SHOW_PROGRESS = "isShowProgress";
+export const SHOW_PLAYER = "ShowPlayer";
+export const LOADED_META_DATA = "loadedmetadata";
+export const GET_AUDIO_RES = "getAudioRes";
+export const IS_SHOW_TAB_BAR = "isShowTabBar";

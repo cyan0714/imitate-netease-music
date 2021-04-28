@@ -7,7 +7,9 @@
         <span>&nbsp;-&nbsp;</span>
         <span class="album-name">{{ item.album.name }}</span>
       </div>
-      <a href="javascript:;" class="mv" v-if="item.mvid != ''" @click="mvIconClick(index)"></a>
+      <a href="javascript:;" class="mv" v-if="item.mvid != ''" @click="mvIconClick(index, $event)"
+        ></a
+      >
     </li>
     <playing-state
       id="playingstate"
@@ -82,7 +84,7 @@ export default {
         // console.log(res.hotComments);
         // this.commentAvatarUrl = res.hotComments[index].user.avatarUrl;
         // this.commentNickName = res.hotComments[index].user.nickname;
-        console.log(res);
+        // console.log(res);
         this.commentMessage = res.comments;
         this.$store.commit("addToComment", this.commentMessage);
       });
@@ -95,12 +97,49 @@ export default {
         let lyric = this.lyric;
         const regNewLine = /\n/;
         const lineArr = lyric.split(regNewLine);
-        this.$store.commit("getSongLyric", lineArr);
+        const regTime = /\[\d{2}:\d{2}.\d{2,3}\]/;
+        const lyricsObjArr = [];
+        lineArr.forEach((item) => {
+          if (item === "") return;
+          const obj = {};
+          // time 为数组，第一项为 [min:sec.ms] 格式
+          const time = item.match(regTime);
+          obj.lyric = item.split("]")[1].trim() === "" ? "" : item.split("]")[1].trim();
+          obj.time = time ? this.formatLyricTime(time[0].slice(1, time[0].length - 1)) : 0;
+          obj.uid = Math.random()
+            .toString()
+            .slice(-6);
+          if (obj.lyric === "") {
+            console.log("这一行没有歌词");
+          } else {
+            lyricsObjArr.push(obj);
+          }
+        });
+        this.$store.commit("getSongLyric", lyricsObjArr);
         // console.log(res.klylrc);
       });
     },
+    formatLyricTime(time) {
+      // 格式化歌词的时间 转换成 sss:ms
+      const regMin = /.*:/;
+      const regSec = /:.*\./;
+      const regMs = /\./;
+      const min = parseInt(time.match(regMin)[0].slice(0, 2));
+      let sec = parseInt(time.match(regSec)[0].slice(1, 3));
+      const ms = time.slice(time.match(regMs).index + 1, time.match(regMs).index + 4);
+      if (min !== 0) {
+        sec += min * 60;
+      }
+      return Number(sec + "." + ms);
+    },
+
     // 点击获取 mv
-    mvIconClick(index) {
+    mvIconClick(index, e) {
+      // 防止冒泡到点击歌曲播放
+      e.stopPropagation();
+      // 当点击 mv 后，将歌曲播放状态设置为暂停
+      let rs = this.$store.state.audioRes;
+      rs.pause();
       getMVUrl(this.$store.state.songs[index].mvid).then((res) => {
         // console.log(res.data.url);
         this.mvUrl = res.data.url;
@@ -145,6 +184,7 @@ li {
   list-style: none;
 }
 li {
+  position: relative;
   margin: 16px 18px;
   padding-bottom: 16px;
   border-bottom: 1px solid #eee;

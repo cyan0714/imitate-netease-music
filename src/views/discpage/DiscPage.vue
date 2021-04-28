@@ -1,7 +1,8 @@
 <template>
   <div id="discpage" @click="showLyricPage" ref="discpage">
-    <img src="@/assets/img/disc.png" alt="" />
-    <album-img class="albumPic"></album-img>
+    <img src="@/assets/img/disc.png" alt="" v-show="isShowDisc" />
+    <album-img class="albumPic" v-show="isShowDisc"></album-img>
+    <lyric-page v-show="isShowLyric"></lyric-page>
     <!-- 歌曲开始时间 -->
     <span id="start">{{ $store.state.mp3CurrentTime }}</span>
     <!-- 进度条 -->
@@ -10,7 +11,8 @@
     </div>
     <!-- 歌曲总时间 -->
     <span id="end">{{ $store.state.mp3Duraction }}</span>
-    <span class="comment" @click="showComment">查看评论~</span>
+    <!-- 查看评论 -->
+    <span class="comment" @click="showComment">评论~</span>
     <!-- 播放暂停按钮 -->
     <div class="togglestate" @click="clktoplay">
       <span class="pausebtn" v-show="!$store.state.isPlaying"></span>
@@ -21,13 +23,16 @@
 
 <script>
 import AlbumImg from "../../components/content/AlbumImg.vue";
+import LyricPage from "../lyricpage/LyricPage.vue";
 export default {
-  components: { AlbumImg },
+  components: { AlbumImg, LyricPage },
   name: "DiscPage",
   data() {
     return {
       startContent: "",
       endContent: "",
+      isShowLyric: false,
+      isShowDisc: true,
     };
   },
   mounted() {
@@ -55,7 +60,8 @@ export default {
     },
     // 跳转到歌词页面
     showLyricPage() {
-      this.$router.push("/lyricpage");
+      this.isShowLyric = !this.isShowLyric;
+      this.isShowDisc = !this.isShowDisc;
     },
     // 显示评论
     showComment(e) {
@@ -138,9 +144,10 @@ export default {
 .togglestate {
   position: absolute;
   top: 90vh;
-  right: 47vw;
-  width: 32px;
-  height: 32px;
+  right: 50%;
+  transform: translateX(50%);
+  width: 36px;
+  height: 36px;
 }
 img {
   height: 250px;
@@ -161,25 +168,26 @@ img {
   /* background-color: cyan; */
   display: block;
   height: 30px;
-  width: 90px;
+  /* width: 40px; */
+  padding: 4px;
   text-align: center;
   border-radius: 7px;
-  line-height: 30px;
+  line-height: 22px;
   box-shadow: 0px 2px 3px rgba(1, 1, 1, 0.5);
   position: absolute;
   right: 10vw;
-  bottom: 30vw;
+  bottom: 25vw;
   color: #888;
 }
 .pausebtn,
 .playbtn {
   font-family: "icomoon";
-  font-size: 32px;
+  font-size: 36px;
   position: absolute;
   top: 0;
   left: 0;
   display: block;
   text-align: center;
-  line-height: 32px;
+  line-height: 36px;
 }
 </style>

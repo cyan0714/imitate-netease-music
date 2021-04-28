@@ -13,15 +13,22 @@
 <script>
 export default {
   name: "NetComment",
+  activated() {
+    // 隐藏下方 tabbar
+    this.$store.commit("isShowTabBar");
+  },
+  deactivated() {
+    // 显示 tabbar
+    this.$store.commit("isShowTabBar");
+  },
 };
 </script>
 
 <style scoped>
 .hotcomment {
-  /* float: left;
-  width: 20vw;
-  height: 90vh;
-  background-color: pink; */
+  width: 100vw;
+  /* height: 90vh; */
+  /* background-color: pink;  */
   border: 1px solid #ccc;
 }
 dl {
