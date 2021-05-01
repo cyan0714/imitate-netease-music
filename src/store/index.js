@@ -22,6 +22,7 @@ const state = {
   mp3Duraction: "",
   audioRes: "",
   isShowTabBar: true,
+  getPlayingState:''
 };
 const store = new Vuex.Store({
   state,

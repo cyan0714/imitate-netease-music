@@ -13,3 +13,5 @@ export const SHOW_PLAYER = "ShowPlayer";
 export const LOADED_META_DATA = "loadedmetadata";
 export const GET_AUDIO_RES = "getAudioRes";
 export const IS_SHOW_TAB_BAR = "isShowTabBar";
+export const Delete_Songs = "deleteSongs";
+export const GET_PLAYING_STATE = "getPlayingState";

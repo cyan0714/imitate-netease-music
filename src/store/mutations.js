@@ -14,6 +14,8 @@ import {
   LOADED_META_DATA,
   GET_AUDIO_RES,
   IS_SHOW_TAB_BAR,
+  Delete_Songs,
+  GET_PLAYING_STATE,
 } from "./mutation-types";
 
 export default {
@@ -67,5 +69,11 @@ export default {
   },
   [IS_SHOW_TAB_BAR](state) {
     state.isShowTabBar = !state.isShowTabBar;
+  },
+  [Delete_Songs](state) {
+    state.songs = [];
+  },
+  [GET_PLAYING_STATE](state, res) {
+    state.getPlayingState = res;
   },
 };

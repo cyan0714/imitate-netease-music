@@ -11,11 +11,6 @@
         ></a
       >
     </li>
-    <playing-state
-      id="playingstate"
-      v-show="$store.state.isShowState"
-      ref="playingstate"
-    ></playing-state>
   </div>
 </template>
 
@@ -61,7 +56,7 @@ export default {
         this.songdetail = new songDetail(item);
         // 把歌曲相关信息(专辑名，专辑 id，作者，歌曲名，歌曲 id，mvid，mv播放时间)传给 Vuex
         this.$store.commit("getSongDetail", this.songdetail);
-        // 是否展示播放栏
+        // 是否在当前页面展示播放栏
         this.$store.commit("isShowState", this.isShowstate);
       });
 
@@ -91,7 +86,7 @@ export default {
 
       // 5.获取歌词
       getLyric(storeSongsListId).then((res) => {
-        console.log(res.lrc.lyric);
+        // console.log(res.lrc.lyric);
         this.lyric = res.lrc.lyric;
         //格式化歌词
         let lyric = this.lyric;
@@ -152,7 +147,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="less">
 @font-face {
   font-family: "icomoon";
   src: url("../../assets/fonts/icomoon.eot?2lm2ws");
@@ -178,27 +173,24 @@ export default {
   border: 1px solid transparent;
   background-color: #fff;
   border-radius: 14px;
-}
-ul,
-li {
-  list-style: none;
-}
-li {
-  position: relative;
-  margin: 16px 18px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #eee;
-  font-size: 16px;
-}
-.song-name {
-  color: rgb(36, 169, 225);
+  li {
+    list-style: none;
+    position: relative;
+    margin: 16px 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+    .song-name {
+      color: rgb(36, 169, 225);
+    }
+    .aboutsong {
+      font-size: 10px;
+      color: #bbb;
+    }
+  }
 }
 span {
   margin-left: 5px;
   vertical-align: middle;
-}
-.aboutsong {
-  font-size: 10px;
-  color: #bbb;
 }
 </style>

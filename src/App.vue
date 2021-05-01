@@ -3,7 +3,13 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
+    <playing-state
+      id="playingstate"
+      v-show="$store.state.isShowState"
+      ref="playingstate"
+    ></playing-state>
     <main-tab-bar v-show="$store.state.isShowTabBar"></main-tab-bar>
+
     <!-- 播放器 -->
     <audio
       :src="$store.state.musicUrl"
@@ -47,13 +53,12 @@ export default {
       mp3CurrentTime: "",
       mp3Duraction: "",
       audioPlay: "",
+      isShowstate: true,
     };
   },
   mounted() {
     this.$store.commit("getAudioRes", this.$refs.audio);
     //因为该元素有 v-show 所以需要使用 setTimeout (详见掘金，ref 和 refs 区别)
-    // let music = document.querySelector("#music");
-    // let playProgressBar = document.querySelector("#playProgressBar");
     // setTimeout(() => {
     //   console.log(this.$refs.progress.offsetWidth);
     // }, 0);
@@ -92,4 +97,7 @@ export default {
 
 <style scoped>
 @import "./assets/css/normalize.css";
+#playingstate {
+  bottom: 50px;
+}
 </style>
