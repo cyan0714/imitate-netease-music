@@ -61,8 +61,8 @@ export default {
   data() {
     return {
       ValidateForm: {
-        telephone: "18689758622",
-        pwd: "csy148376.2599",
+        telephone: "",
+        pwd: "",
       },
       cookies: null,
       value: "我是login组件",
