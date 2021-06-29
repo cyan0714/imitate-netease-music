@@ -16,6 +16,12 @@ import {
   IS_SHOW_TAB_BAR,
   Delete_Songs,
   GET_PLAYING_STATE,
+  GET_COOKIE,
+  GET_DAILY_SONGS,
+  GET_LOGIN_STATUS,
+  GET_LIST_MESSAGE,
+  GET_LIKE_LIST,
+  GET_SINGLE_SONG_ID,
 } from "./mutation-types";
 
 export default {
@@ -75,5 +81,23 @@ export default {
   },
   [GET_PLAYING_STATE](state, res) {
     state.getPlayingState = res;
+  },
+  [GET_COOKIE](state, res) {
+    state.cookie = res;
+  },
+  [GET_DAILY_SONGS](state, res) {
+    state.getDailySongs = res;
+  },
+  [GET_LOGIN_STATUS](state, res) {
+    state.loginStatus = res;
+  },
+  [GET_LIST_MESSAGE](state, res) {
+    state.listMessage = res;
+  },
+  [GET_LIKE_LIST](state, res) {
+    state.likeList = res;
+  },
+  [GET_SINGLE_SONG_ID](state, res) {
+    state.singleSongId = res;
   },
 };

@@ -16,7 +16,7 @@
 
 <script>
 import {
-  getAlbumImg,
+  getSingleDetail,
   getHotComment,
   getMVUrl,
   getSongMp3,
@@ -51,11 +51,10 @@ export default {
       let storeSongsListId = this.$store.state.songs[index].id;
       // 1.向后台发送请求, 获取歌曲名和歌手信息保存到 Vuex
       getSongsMessage(this.$store.state.songs[index].name).then((res) => {
-        console.log(storeSongsListId);
         const item = res.result.songs[index];
-        this.songdetail = new songDetail(item);
+        const songDetailObj = new songDetail(item);
         // 把歌曲相关信息(专辑名，专辑 id，作者，歌曲名，歌曲 id，mvid，mv播放时间)传给 Vuex
-        this.$store.commit("getSongDetail", this.songdetail);
+        this.$store.commit("getSongDetail", songDetailObj);
         // 是否在当前页面展示播放栏
         this.$store.commit("isShowState", this.isShowstate);
       });
@@ -68,7 +67,7 @@ export default {
       });
 
       // 3.获取专辑图片
-      getAlbumImg(storeSongsListId).then((res) => {
+      getSingleDetail(storeSongsListId).then((res) => {
         // console.log(res.songs[0].al.picUrl);
         this.albumUrl = res.songs[0].al.picUrl;
         this.$store.commit("addToAlbumImg", this.albumUrl);
@@ -76,10 +75,6 @@ export default {
 
       // 4.获取评论
       getHotComment(storeSongsListId).then((res) => {
-        // console.log(res.hotComments);
-        // this.commentAvatarUrl = res.hotComments[index].user.avatarUrl;
-        // this.commentNickName = res.hotComments[index].user.nickname;
-        // console.log(res);
         this.commentMessage = res.comments;
         this.$store.commit("addToComment", this.commentMessage);
       });
@@ -111,7 +106,6 @@ export default {
           }
         });
         this.$store.commit("getSongLyric", lyricsObjArr);
-        // console.log(res.klylrc);
       });
     },
     formatLyricTime(time) {
@@ -138,7 +132,7 @@ export default {
       getMVUrl(this.$store.state.songs[index].mvid).then((res) => {
         // console.log(res.data.url);
         this.mvUrl = res.data.url;
-        this.isShowMv = !false;
+        this.isShowMv = !this.isShowMv;
         this.$store.commit("addToMv", [this.mvUrl, this.isShowMv]);
       });
       this.$router.push("/mv");
@@ -169,17 +163,22 @@ export default {
 }
 .songsmenu {
   position: relative;
-  margin: 10px 16px 0;
+  margin: 10px 16px 10vh;
   border: 1px solid transparent;
   background-color: #fff;
   border-radius: 14px;
+
   li {
     list-style: none;
     position: relative;
-    margin: 16px 18px;
+    margin: 16px 18px 0;
     padding-bottom: 16px;
     border-bottom: 1px solid #eee;
     font-size: 16px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    // background-color: yellow;
     .song-name {
       color: rgb(36, 169, 225);
     }
@@ -191,6 +190,6 @@ export default {
 }
 span {
   margin-left: 5px;
-  vertical-align: middle;
+  // vertical-align: bottom;
 }
 </style>

@@ -23,21 +23,8 @@ export default {
     },
   },
   data() {
-    return {
-      // songListImg: [],
-    };
+    return {};
   },
-  // created() {
-  //   this.getRcdSongList();
-  // },
-  // methods: {
-  //   getRcdSongList() {
-  //     getRecommendList().then((res) => {
-  //       console.log(res);
-  //       this.songListImg = res.result;
-  //     });
-  //   },
-  // },
 };
 </script>
 

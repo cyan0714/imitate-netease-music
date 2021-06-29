@@ -29,7 +29,7 @@
 <script>
 import AlbumImg from "@/components/content/AlbumImg.vue";
 import NetComment from "@/components/content/NetComment.vue";
-import NetInput from "@/components/content/NetInput.vue";
+// import NetInput from "@/components/content/NetInput.vue";
 import NetMv from "@/components/content/NetMv";
 import SongList from "@/views/songlist/SongList.vue";
 import MainTabBar from "@/components/common/bottom-tabbar/MainTabBar";
@@ -39,7 +39,7 @@ import DiscPage from "./views/discpage/DiscPage.vue";
 export default {
   name: "App",
   components: {
-    NetInput,
+    // NetInput,
     SongList,
     AlbumImg,
     NetComment,

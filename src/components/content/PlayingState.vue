@@ -1,7 +1,7 @@
 <template>
-  <div class="playstate" @click="showSongList" ref="playstate">
+  <div class="playstate" ref="playstate" @click="showDiscPage">
     <!-- 圆盘 -->
-    <div class="rotatedisc" @click="showDiscPage">
+    <div class="rotatedisc">
       <!-- 圆盘图片 -->
       <img src="@/assets/img/disc.png" alt="" class="disc" />
       <!-- 圆盘里转动的图片 -->
@@ -29,16 +29,13 @@ export default {
   },
   mounted() {
     // console.log((this.$refs.playstate.style.bottom = "30px"));
+    // 将播放器组件 commit 到 vuex
     this.$store.commit("getPlayingState", this.$refs.playstate);
   },
   props: {},
   methods: {
-    showSongList() {
-      this.$router.push("/songlist");
-    },
     clktoplay(e) {
       // 获取 audio 元素，才能使用 pause 和 play 方法
-      // let audio = document.querySelector("audio");
       e.stopPropagation();
       let rs = this.$store.state.audioRes;
       if (this.$store.state.isPlaying) {

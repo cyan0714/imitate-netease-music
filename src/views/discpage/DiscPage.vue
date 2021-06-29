@@ -184,7 +184,7 @@ export default {
     box-shadow: 0px 2px 3px rgba(1, 1, 1, 0.5);
     position: absolute;
     right: 10vw;
-    bottom: 25vw;
+    bottom: 100px;
     color: #888;
   }
 }

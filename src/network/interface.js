@@ -30,11 +30,11 @@ export function getSongMp3(songId) {
 }
 
 // 3.通过歌曲信息的 id 获取专辑图片
-export function getAlbumImg(albumImg) {
+export function getSingleDetail(id) {
   return request({
     url: "/song/detail",
     params: {
-      ids: albumImg,
+      ids: id,
     },
   });
 }
@@ -94,6 +94,6 @@ export function getLyric(songId) {
 // 9.获取每日推荐等圆形图标
 export function getCircleIcon() {
   return request({
-    url:"/homepage/dragon/ball"
-  })
+    url: "/homepage/dragon/ball",
+  });
 }

@@ -60,6 +60,13 @@ export default {
       resultSongs: [],
     };
   },
+  watch: {
+    banners() {
+      this.$nextTick(() => {
+        console.log(this.banners.length);
+      });
+    },
+  },
   mounted() {},
   created() {
     // 获取轮播图
@@ -113,11 +120,8 @@ export default {
   //   next();
   //   // console.log("路由12");
   //   // this.$store.state.getPlayingState.top = 0;
-  //   console.log(this.$store.state.getPlayingState);
   //   this.$store.state.getPlayingState.style.bottom = "0px";
-  //   // console.log(());
   //   // console.dir(this.$store.state.getPlayingState);
-  //   // console.dir();
   // },
 };
 </script>
@@ -168,7 +172,5 @@ export default {
   overflow: hidden;
   white-space: nowrap;
   color: rgb(0, 90, 171);
-
-  /* background-color: orange; */
 }
 </style>

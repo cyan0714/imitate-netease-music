@@ -1,4 +1,6 @@
 import axios from "axios";
+import { store } from "../store/store";
+// axios.defaults.withCredentials = true; // 允许携带cookie
 //一.加了 promise
 // export function request(config) {
 //   return new Promise((resolve, reject) => {
@@ -24,12 +26,16 @@ export function request(config) {
   const instance = axios.create({
     baseURL: "https://autumnfish.cn",
     timeout: 5000,
+    // withCredentials: true,
   });
 
   // 2.axios 拦截器
   instance.interceptors.request.use(
     (config) => {
-      // console.log(config);
+      //路由跳转时取消上一个页面的网络请求
+      config.cancelToken = new axios.CancelToken(function(cancel) {
+        store.commit("pushToken", { cancelToken: cancel });
+      });
       return config; //必须加 return
     },
     (err) => {

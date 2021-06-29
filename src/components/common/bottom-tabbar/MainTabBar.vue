@@ -1,7 +1,7 @@
 <template>
   <div id="main-tab-bar">
     <tab-bar-bar>
-      <tab-bar-item path="/find">
+      <tab-bar-item path="/find" activeColor="red">
         <!-- <img slot="item-icon" src="@/assets/img/tabbar/home.svg" alt="" />
         <img slot="item-icon-active" src="@/assets/img/tabbar/home_active.svg" alt="" /> -->
         <span slot="item-icon" class="find-icon"></span>
@@ -41,6 +41,9 @@ export default {
     TabBarBar: TabBarBar,
     TabBarItem,
   },
+  data() {
+    return {};
+  },
 };
 </script>
 <style scoped>
@@ -55,9 +58,13 @@ export default {
   font-style: normal;
   font-display: block;
 }
+#main-tab-bar {
+  color: #bbb;
+}
 .find-icon {
   font-family: "icomoon";
   font-size: 26px;
+  color: #ccc;
 }
 .find-icon-active {
   font-family: "icomoon";
@@ -67,6 +74,7 @@ export default {
 .bt-navbar-text {
   font-size: 12px;
   /* color: red; */
+  /* color: #ccc; */
 }
 /* .main-tab-bar {
  

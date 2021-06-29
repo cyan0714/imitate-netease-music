@@ -1,5 +1,6 @@
 <template>
-  <div class="netmv" v-show="$store.state.isShowMv">
+  <!-- v-show="$store.state.isShowMv" -->
+  <div class="netmv">
     <video :src="$store.state.mvUrl" controls loop autoplay></video>
   </div>
 </template>
