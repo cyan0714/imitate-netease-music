@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app121212">
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
@@ -58,10 +58,6 @@ export default {
   },
   mounted() {
     this.$store.commit("getAudioRes", this.$refs.audio);
-    //因为该元素有 v-show 所以需要使用 setTimeout (详见掘金，ref 和 refs 区别)
-    // setTimeout(() => {
-    //   console.log(this.$refs.progress.offsetWidth);
-    // }, 0);
   },
   methods: {
     //当浏览器已加载音频/视频的元数据时(audio api)

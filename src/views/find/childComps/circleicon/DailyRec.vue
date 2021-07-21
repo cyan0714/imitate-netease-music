@@ -3,7 +3,7 @@
     <h4>每日推荐</h4>
     <div v-if="isShowTip">
       <span>获取每日推荐歌曲,请 </span>
-      <router-link to="/login" @click="ClickToShowTip()">
+      <router-link to="/login" replace>
         <span class="immidia">登录</span>
       </router-link>
     </div>

@@ -1,7 +1,7 @@
 <template>
   <div id="main-tab-bar">
     <tab-bar-bar>
-      <tab-bar-item path="/find" activeColor="red">
+      <tab-bar-item path="/find">
         <!-- <img slot="item-icon" src="@/assets/img/tabbar/home.svg" alt="" />
         <img slot="item-icon-active" src="@/assets/img/tabbar/home_active.svg" alt="" /> -->
         <span slot="item-icon" class="find-icon"></span>
@@ -63,20 +63,15 @@ export default {
 }
 .find-icon {
   font-family: "icomoon";
-  font-size: 26px;
+  font-size: 20px;
   color: #ccc;
 }
 .find-icon-active {
   font-family: "icomoon";
   color: red;
-  font-size: 26px;
+  font-size: 20px;
 }
 .bt-navbar-text {
   font-size: 12px;
-  /* color: red; */
-  /* color: #ccc; */
 }
-/* .main-tab-bar {
- 
-} */
 </style>

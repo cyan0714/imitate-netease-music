@@ -5,7 +5,7 @@
         <div class="unLogin">
           <span class="icon"></span>
         </div>
-        <router-link to="/login">
+        <router-link to="/login" replace>
           <span class="immidia">立即登录</span>
         </router-link>
         <span class="arrow"></span>
@@ -17,6 +17,11 @@
     </div>
     <my-love class="mylove"></my-love>
     <my-count :mycount="mycount" class="mycount"></my-count>
+    <my-collection
+      :subPlaylistCount="subPlaylistCount"
+      :mycount="mycount"
+      class="mycount"
+    ></my-collection>
   </div>
 </template>
 
@@ -24,11 +29,13 @@
 import { getListCount } from "@/network/userlist/playlist";
 import MyLove from "./childComps/MyLove.vue";
 import MyCount from "./childComps/MyCount.vue";
+import MyCollection from "./childComps/MyCollection.vue";
 export default {
   name: "ProFile",
   components: {
     MyLove,
     MyCount,
+    MyCollection,
   },
   data() {
     return {
@@ -39,7 +46,9 @@ export default {
 
   activated() {
     getListCount(this.$store.state.cookie).then((res) => {
+      //创建歌单数量
       this.mycount = res.createdPlaylistCount - 1;
+      //收藏歌单数量
       this.subPlaylistCount = res.subPlaylistCount;
     });
   },
@@ -66,7 +75,7 @@ export default {
     margin-top: 3vh;
   }
   .mycount {
-    margin-top: 5vh;
+    // margin-top: 5vh;
   }
   .portrait {
     position: relative;

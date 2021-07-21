@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "webpack1":"webpack -v"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -19,7 +20,8 @@
     "less": "^3.0.0",
     "less-loader": "^5.0.0",
     "vue-template-compiler": "^2.6.11",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "webpack-cli": "^4.7.2"
   },
   "browserslist": [
     "> 1%",

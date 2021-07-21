@@ -109,10 +109,14 @@ export default {
     }
   }
   .songdetail {
+    width: 60vw;
     position: absolute;
     left: 80px;
     top: 6%;
     font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 </style>

@@ -59,8 +59,10 @@ export default {
   border-radius: 8px;
   .text {
     display: flex;
+    width: 60vw;
     flex-direction: column;
     font-size: 14px;
+    overflow: hidden;
   }
 }
 </style>

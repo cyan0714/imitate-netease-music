@@ -61,8 +61,8 @@ export default {
   data() {
     return {
       ValidateForm: {
-        telephone: "",
-        pwd: "",
+        telephone: "18689758622",
+        pwd: "csy148376.2599",
       },
       cookies: null,
       value: "我是login组件",
@@ -81,7 +81,7 @@ export default {
           alert("登录成功");
           this.cookies = encodeURIComponent(res.cookie);
           this.$store.commit("getCookie", this.cookies);
-          this.$router.push("/profile");
+          this.$router.replace("/profile");
         } else {
           alert("密码错误");
         }

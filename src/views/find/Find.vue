@@ -63,7 +63,7 @@ export default {
   watch: {
     banners() {
       this.$nextTick(() => {
-        console.log(this.banners.length);
+        // console.log(this.banners.length);
       });
     },
   },

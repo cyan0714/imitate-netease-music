@@ -169,18 +169,23 @@ export default {
   border-radius: 14px;
 
   li {
+    // width: 80vw;
     list-style: none;
     position: relative;
     margin: 16px 18px 0;
     padding-bottom: 16px;
     border-bottom: 1px solid #eee;
     font-size: 16px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    // background-color: yellow;
+    // overflow: hidden;
+
     .song-name {
+      display: block;
+      // background-color: yellow;
+
       color: rgb(36, 169, 225);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .aboutsong {
       font-size: 10px;
